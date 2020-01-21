@@ -3,12 +3,14 @@ import FormErrors from "../FormErrors";
 import Validate from "../util/Validation";
 import { Auth } from "aws-amplify";
 
-class LogIn extends Component {
+class ChangePassword extends Component {
   state = {
-    username: "",
+    oldpassword: "",
     password: "",
+    confirmpassword: "",
     errors: {
       blankfield: false,
+      matchedpassword: false,
       cognito: null
     }
   };
@@ -33,31 +35,28 @@ class LogIn extends Component {
       this.setState({
         errors: { ...this.state.errors, ...error }
       });
-    } else {
-      //Integrate Cognito here on valid form submission
-      //Take the state variables to pass to the signUp method
-      //we added email as a required field and this needs to be
-      //passed to the api as an attribute.
-      try {
-        const user = await Auth.signIn(
-          this.state.username,
-          this.state.password
-        );
-        console.log(user);
-        this.props.auth.authenticateUser(true);
-        this.props.auth.setAuthUser(user);
-        this.props.history.push("/");
-      } catch (error) {
-        let err = null;
-        !error.message ? (err = { message: error }) : (err = error);
+    }
+    //Integrate Cognito here on valid form submission
+    //Take the state variables to pass to the signUp method
+    //we added email as a required field and this needs to be
+    //passed to the api as an attribute.
+    try {
+      await Auth.changePassword(
+        this.props.auth.user,
+        this.state.old,
+        this.state.password
+      );
+      this.props.history.push("/changepassword");
+    } catch (error) {
+      let err = null;
+      !error.message ? (err = { message: error }) : (err = error);
 
-        this.setState({
-          errors: {
-            ...this.state.errors,
-            cognito: err
-          }
-        });
-      }
+      this.setState({
+        errors: {
+          ...this.state.errors,
+          cognito: err
+        }
+      });
     }
   };
 
@@ -72,7 +71,7 @@ class LogIn extends Component {
     return (
       <section className="section auth">
         <div className="container">
-          <h1>Log in</h1>
+          <h1>Reset Password</h1>
           <FormErrors formerrors={this.state.errors} />
 
           <form onSubmit={this.handleSubmit}>
@@ -80,40 +79,52 @@ class LogIn extends Component {
               <p className="control has-icons-left">
                 <input
                   className="input"
-                  type="text"
-                  id="username"
-                  placeholder="Enter username or email"
-                  value={this.state.username}
+                  type="password"
+                  id="oldpassword"
+                  placeholder="Enter your current password"
+                  value={this.state.oldpassword}
                   onChange={this.onInputChange}
                 />
                 <span className="icon is-small is-left">
-                  <i className="fas fa-user"></i>
+                  <i className="fas fa-envelope"></i>
                 </span>
               </p>
             </div>
+
             <div className="field">
               <p className="control has-icons-left">
                 <input
                   className="input"
                   type="password"
-                  id="password"
-                  placeholder="Password"
+                  id="passowrd"
+                  placeholder="Enter your password"
                   value={this.state.password}
                   onChange={this.onInputChange}
                 />
                 <span className="icon is-small is-left">
-                  <i className="fas fa-lock"></i>
+                  <i className="fas fa-envelope"></i>
+                </span>
+              </p>
+            </div>
+
+            <div className="field">
+              <p className="control has-icons-left">
+                <input
+                  className="input"
+                  type="confirmationpassword"
+                  id="confirmationpassword"
+                  placeholder="Enter your confirmationpassword"
+                  value={this.state.confirmationpassword}
+                  onChange={this.onInputChange}
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-envelope"></i>
                 </span>
               </p>
             </div>
             <div className="field">
               <p className="control">
-                <a href="/forgotpassword">Forgot password?</a>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <button className="button is-success">Login</button>
+                <button className="button is-success">Email Reset Code</button>
               </p>
             </div>
           </form>
@@ -123,4 +134,4 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+export default ChangePassword;
