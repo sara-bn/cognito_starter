@@ -39,6 +39,7 @@ class ForgotPassword extends Component {
       //passed to the api as an attribute.
       try {
         await Auth.forgotPassword(this.state.email);
+        console.log("j");
         this.props.history.push("/forgotpasswordsubmit");
       } catch (error) {
         let err = null;
@@ -76,7 +77,7 @@ class ForgotPassword extends Component {
                   type="email"
                   id="email"
                   placeholder="Enter your email"
-                  value={this.state.email}
+                  value={this.state.username}
                   onChange={this.onInputChange}
                 />
                 <span className="icon is-small is-left">

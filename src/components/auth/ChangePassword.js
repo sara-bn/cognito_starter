@@ -111,7 +111,7 @@ class ChangePassword extends Component {
               <p className="control has-icons-left">
                 <input
                   className="input"
-                  type="confirmationpassword"
+                  type="password"
                   id="confirmationpassword"
                   placeholder="Enter your confirmationpassword"
                   value={this.state.confirmationpassword}
