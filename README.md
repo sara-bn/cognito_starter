@@ -12,5 +12,8 @@ We have integrate the AWS Cognito service into a React app in class.
 ## API
 I have created a AWS hosted MySQL database using the AWS RDS Service along with Lambda Functions to interact with the database.
 Then by using the database and Lambda Functions while using the AWS API Gateway, I have made a local React client app.
+In order to store images I have used S3 and gave public access to my objects
 Here is the screenshots of from my aws account:
+
+![GitHub Logo](https://github.com/sara-bn/cognito_starter/blob/master/S3(1).png)
 
