@@ -15,5 +15,8 @@ Then by using the database and Lambda Functions while using the AWS API Gateway,
 In order to store images I have used S3 and gave public access to my objects
 Here is the screenshots of from my aws account:
 
-![GitHub Logo](https://github.com/sara-bn/cognito_starter/blob/master/S3(1).png)
+![S3](https://github.com/sara-bn/cognito_starter/blob/master/S3(1).png)
+![S3](https://github.com/sara-bn/cognito_starter/blob/master/S3(2).png)
+![API](https://github.com/sara-bn/cognito_starter/blob/master/API(1).png)
+![API](https://github.com/sara-bn/cognito_starter/blob/master/API(2).png)
 
