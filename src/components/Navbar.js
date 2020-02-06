@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Cat from "./Cat";
 import { Auth } from "aws-amplify";
 
 export default class Navbar extends Component {
@@ -29,6 +30,12 @@ export default class Navbar extends Component {
               {this.props.auth.isAuth && this.props.auth.user && (
                 <p>Hello {this.props.auth.user.username}</p>
               )}
+              {this.props.auth.isAuth && this.props.auth.user && (
+                <a href="/cat" className="button btn-info">
+                  Cats
+                </a>
+              )}
+
               <div className="auth-buttons">
                 {/* <a href="/register" className="button is-primary">
                   <strong>Register</strong>

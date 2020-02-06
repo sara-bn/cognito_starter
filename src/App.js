@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Register from "./components/auth/Register";
 import Welcome from "./components/auth/Welcome";
+import Cat from "./components/Cat";
 import LogIn from "./components/auth/LogIn";
 import ForgotPassword from "./components/auth/ForgotPassword";
 import ForgotPasswordSubmit from "./components/auth/ForgotPasswordSubmit";
@@ -67,6 +68,11 @@ class App extends Component {
                   exact
                   path="/welcome"
                   render={props => <Welcome {...props} auth={authProps} />}
+                />
+                <Route
+                  exact
+                  path="/cat"
+                  render={props => <Cat {...props} auth={authProps} />}
                 />
                 <Route
                   exact
