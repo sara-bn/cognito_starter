@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Cat from "./Cat";
 import { Auth } from "aws-amplify";
+import { withRouter } from "react-router-dom";
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   //handle the logout button click event
   logOutHandler = async event => {
     //prevent page refresh
@@ -12,6 +13,7 @@ export default class Navbar extends Component {
       Auth.signOut();
       this.props.auth.authenticateUser(false);
       this.props.auth.setAuthUser(null);
+      this.props.history.push("/");
     } catch (error) {
       console.log(error.message);
     }
@@ -79,3 +81,4 @@ export default class Navbar extends Component {
     );
   }
 }
+export default withRouter(Navbar);
